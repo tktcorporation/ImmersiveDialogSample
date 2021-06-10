@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.immersivedialogsample.databinding.DialogInfoBinding
 
 class InfoDialogFragment : DialogFragment() {
-    lateinit var binding: DialogInfoBinding
+    private lateinit var binding: DialogInfoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
