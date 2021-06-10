@@ -7,45 +7,29 @@ import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.example.immersivedialogsample.databinding.DialogInfoBinding
 
-
-
-
 class InfoDialogFragment : DialogFragment() {
     lateinit var binding: DialogInfoBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DialogInfoBinding.inflate(
-            inflater
-        )
+        binding = DialogInfoBinding.inflate(inflater)
 
-        //设置背景透明
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        //关闭点击外面消失的效果
         dialog?.setCanceledOnTouchOutside(false)
         dialog?.setCancelable(true)
-        //去掉低版本部分机型顶部出现一条蓝线的现象
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-        //window背后所以变灰暗
         dialog?.window?.setFlags(
             WindowManager.LayoutParams.FLAG_DIM_BEHIND,
             WindowManager.LayoutParams.FLAG_DIM_BEHIND
         )
         dialog?.window?.setDimAmount(0.7f)
 
-
-        //不要焦点，保持全屏
         dialog?.window?.addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
-         dialog?. window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
+        dialog?. window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
         fullScreenImmersive(dialog?.window?.decorView!!)
 
         binding.closeButton.setOnClickListener {
@@ -53,19 +37,6 @@ class InfoDialogFragment : DialogFragment() {
         }
 
         return binding.root
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     override fun onResume() {
