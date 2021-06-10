@@ -13,6 +13,11 @@ import com.example.immersivedialogsample.databinding.DialogInfoBinding
 class InfoDialogFragment : DialogFragment() {
     lateinit var binding: DialogInfoBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,8 +46,25 @@ class InfoDialogFragment : DialogFragment() {
         dialog?.window?.addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
          dialog?. window?.setFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
         fullScreenImmersive(dialog?.window?.decorView!!)
-         dialog?. window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
         return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        dialog?. window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
     }
 
     private fun fullScreenImmersive(view: View) {
